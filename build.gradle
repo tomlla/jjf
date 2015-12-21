@@ -1,8 +1,24 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 
+group = 'com.jjf'
+version = '1.0'
+
+
+def jdkVer = 1.7
+sourceCompatibility = jdkVer
+targetCompatibility = jdkVer
+
 repositories {
-    jcenter()
+    mavenCentral()
+}
+
+jar {
+    manifest {
+//        attributes 'Implementation-Title': 'Mychael Style Tools', 'Implementation-Version': 1.0
+        attributes "Main-Class" : "com.jjf.Bootstrap"
+    }
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
 
 dependencies {
